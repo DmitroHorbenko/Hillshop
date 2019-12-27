@@ -1,10 +1,6 @@
-import { GET_CART, ADD_TO_CART, REMOVE_FROM_CART } from '../actions/types'
+import { GET_CART, ADD_TO_CART, REMOVE_FROM_CART, LOAD_CART_DATA } from '../actions/types'
 
-const initialState = {
-    cart: ['id_1', 'id_2', 'id_3', 'id_4']
-}
-
-export default function (state = initialState, action) {
+export default function (state, action) {
     switch (action.type) {
         case GET_CART:
             return {

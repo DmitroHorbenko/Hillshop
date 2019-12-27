@@ -1,8 +1,12 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
-import rootReducer from './reducers'
+import rootReducer from './reduсers/index'
 
-const initialState = {}
+const initialState = {
+    cart: ['id1','id2','id3'],
+    categories: [],
+    categoriesLoad: false
+}
 
 const middlware = [thunk]
 
