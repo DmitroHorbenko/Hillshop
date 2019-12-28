@@ -1,14 +1,27 @@
-import { GET_CATEGORIES, CATEGORIES_LOAD } from '../actions/types'
+import { GET_CATEGORIES, CATEGORIES_LOAD, CATEGORIES_ERROR } from '../actions/types'
 
-export default function (state = [], action) {
+const initState = {
+    categories: [],
+    categoriesLoad: false,
+    categoriesError: false
+}
+
+export default function (state = initState, action) {
     switch (action.type) {
         case GET_CATEGORIES:
             return {
-                ...state
+                ...state,
+                categories: action.payload
             }
         case CATEGORIES_LOADING:
             return {
-                ...state
+                ...state,
+                categoriesLoad: action.payload
+            }
+        case CATEGORIES_ERROR:
+            return {
+                ...state,
+                categoriesError: action.payload
             }
         default:
             return state

@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
-import redux from 'react-redux'
+import connect from 'react-redux'
 import {withRouter} from 'react-router-dom'
 
-import {getCart, removeCart} from '../actions/cartActions'
+import {getCart, removeCart} from '../actions/cart'
 import PropTypes from 'prop-types'
 
 class Cart extends Component {
@@ -39,7 +39,7 @@ const mapStateToProps = state => ({
 Cart.propTypes = {
     getCart: PropTypes.func.isRequired,
     removeCart: PropTypes.func.isRequired,
-    cart: PropTypes.object.isRequired,
+    cart: PropTypes.array.isRequired,
 }
 
 export default withRouter(connect(mapStateToProps, { getCart, removeCart })(Cart))

@@ -2,6 +2,7 @@ import React from 'react'
 
 import Cart from './Cart'
 import ShopWindow from './ShopWindow'
+import CategorySelector from "./CategorySelector";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -13,7 +14,8 @@ export default function Main() {
         <Router>
             <Switch>
                 <Route path='/cart' exact component={Cart}></Route>
-                <Route path='/shop' exact component={ShopDisplay}></Route>
+                <Route path='/shop' exact component={ShopWindow}></Route>
+                <Route path='/selector' exact component={CategorySelector} ></Route>
             </Switch>
         </Router>
     </Provider>

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
-import cartReducer from './cartReducer'
-import categorySelectorReducer from './categorySelectorReducer'
+import cartReducer from './cart'
+import categorySelectorReducer from './categorySelector'
 
 const rootReducer = combineReducers({
     cart: cartReducer,
