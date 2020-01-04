@@ -1,9 +1,9 @@
-import { GET_CATEGORIES, CATEGORIES_LOAD, CATEGORIES_ERROR } from '../actions/types'
+import {GET_CATEGORIES, CATEGORIES_LOADING, CATEGORIES_ERRORED} from '../actions'
 
 const initState = {
     categories: [],
-    categoriesLoad: false,
-    categoriesError: false
+    categoriesLoading: false,
+    categoriesErrored: false
 }
 
 export default function (state = initState, action) {
@@ -16,12 +16,12 @@ export default function (state = initState, action) {
         case CATEGORIES_LOADING:
             return {
                 ...state,
-                categoriesLoad: action.payload
+                categoriesLoading: action.payload
             }
-        case CATEGORIES_ERROR:
+        case CATEGORIES_ERRORED:
             return {
                 ...state,
-                categoriesError: action.payload
+                categoriesErrored: action.payload
             }
         default:
             return state

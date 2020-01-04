@@ -1,4 +1,4 @@
-import { GET_CATEGORIES, CATEGORIES_LOAD, CATEGORIES_ERROR } from './types'
+import { GET_CATEGORIES, CATEGORIES_LOADING, CATEGORIES_ERRORED } from './index'
 
 export const getCategories = items => {
     return {
@@ -7,30 +7,30 @@ export const getCategories = items => {
     }
 }
 
-export const categoriesLoad = bool => {
+export const categoriesLoading = bool => {
     return {
-        type: CATEGORIES_LOAD,
+        type: CATEGORIES_LOADING,
         payload: bool,
     }
 }
 
-export const categoriesError = bool => {
+export const categoriesErrored = bool => {
     return {
-        type: CATEGORIES_ERROR,
+        type: CATEGORIES_ERRORED,
         payload: bool,
     }
 }
 
 export const fetchCategories = url => {
     return dispatch => {
-        dispatch(categoriesLoad(true))
+        dispatch(categoriesLoading(true))
         fetch(url)
             .then((res) => {
-                dispatch(categoriesLoad(false));
+                dispatch(categoriesLoading(false));
                 return res;
             })
             .then((res) => res.json())
             .then((items) => dispatch(getCategories(items)))
-            .catch(() => dispatch(categoriesError(true)))
+            .catch(() => dispatch(categoriesErrored(true)))
     }
 }

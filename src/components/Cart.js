@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import connect from 'react-redux'
+import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 
 import {getCart, removeCart} from '../actions/cart'
@@ -19,7 +19,7 @@ class Cart extends Component {
         const { cart } = this.props.cart
         return <div>
             {cart.map(id =>
-                <div>
+                <div style={{ backgroundColor: 'green' }}>
                     <h3>{id}</h3>
                     <button
                         type="button"

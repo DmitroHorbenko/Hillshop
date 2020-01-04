@@ -1,4 +1,4 @@
-import { GET_CART, ADD_TO_CART, REMOVE_FROM_CART, LOAD_CART_DATA } from './types'
+import { GET_CART, ADD_TO_CART, REMOVE_FROM_CART, LOAD_CART_DATA } from './index'
 
 export const getCart = () => {
     return {

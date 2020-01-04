@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-const connect = mongoose.connect('mongodb://localhost/testNode');
-mongoose.set('debug', true);
+mongoose.connect("mongodb://localhost:27017/hillshop", { useNewUrlParser: true })
+mongoose.set('debug', true)
 
 module.exports = mongoose

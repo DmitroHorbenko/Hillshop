@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-import {categoriesError, fetchCategories} from '../actions/categorySelector'
+import { fetchCategories } from '../actions/categorySelector'
 import PropTypes from 'prop-types'
 
 class CategorySelector extends Component {
@@ -19,22 +20,25 @@ class CategorySelector extends Component {
             return <p>There was a problem loading categories</p>
         }
         const categories = this.props.categories
-        return <div>
+        return <ul>
             {categories.map(item =>
-                <div>
+                <Link key={item._id} to={{ pathname: "/shop", search: `?category=${item._id}` }}>
                     <h3>{item.name}</h3>
                     <h3>{item.id}</h3>
-                </div>
+                </Link>
             )}
-        </div>
+        </ul>
     }
 }
 
-const mapStateToProps = state => ({
-    categories: state.categories
-    isLoading: state.categoriesLoad
-    isErrored: state.categoriesError
-})
+const mapStateToProps = state => {
+    return {
+        categories: state.categorySelector.categories,
+        isLoading: state.categorySelector.categoriesLoading ,
+        hasErrored: state.categorySelector.categoriesErrored,
+    }
+
+}
 
 const mapDispatchToProps = dispatch => {
     return {

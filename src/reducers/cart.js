@@ -1,4 +1,4 @@
-import { GET_CART, ADD_TO_CART, REMOVE_FROM_CART, LOAD_CART_DATA } from '../actions/types'
+import { GET_CART, ADD_TO_CART, REMOVE_FROM_CART, LOAD_CART_DATA } from '../actions'
 
 const initState = {
     cart: ['1', '2', '3']
