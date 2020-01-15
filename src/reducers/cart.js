@@ -1,8 +1,8 @@
 import { ADD_TO_CART, REMOVE_FROM_CART, LOAD_CART_DATA, CART_LOADING, CART_ERRORED } from '../actions'
 
 const initState = {
-    cartId: [],
-    cartDetail: [],
+    cartIds: [],
+    cartDetails: [],
     cartLoading: false,
     cartErrored: false
 }
@@ -12,10 +12,10 @@ export default function (state = initState, action) {
         case ADD_TO_CART:
             return {
                 ...state,
-                cartId: [ ...state.cartId, action.payload ]
+                cartIds: [ ...state.cartIds, action.payload ]
             }
         case REMOVE_FROM_CART:
-            const newCartDetail = state.cartDetail.slice()
+            const newCartDetail = state.cartDetails.slice()
             function findWithAttr(array, attr, value) {
                 for (var i = 0; i < array.length; i++) {
                     if (array[i][attr] === value) {
@@ -25,17 +25,17 @@ export default function (state = initState, action) {
                 return -1
             }
             newCartDetail.splice(findWithAttr(newCartDetail, '_id', action.payload), 1)
-            const newCart = state.cartId.slice()
+            const newCart = state.cartIds.slice()
             newCart.splice(newCart.indexOf(action.payload), 1)
             return {
                 ...state,
-                cartId: newCart,
-                cartDetail: newCartDetail
+                cartIds: newCart,
+                cartDetails: newCartDetail
             }
         case LOAD_CART_DATA:
             return {
                 ...state,
-                cartDetail: action.payload
+                cartDetails: action.payload
             }
         case CART_LOADING:
             return {

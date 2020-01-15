@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { WhithRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 import { addToCart } from "../actions/cart";
@@ -61,7 +61,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchProducts: (url, categoryToLoad) => dispatch(fetchProducts(url, categoryToLoad))
+        fetchProducts: (url, categoryToLoad) => dispatch(fetchProducts(url, categoryToLoad)),
         addToCart: id => dispatch(addToCart(id))
     }
 }
@@ -73,4 +73,4 @@ ShopWindow.propTypes = {
     hasErrored: PropTypes.bool.isRequired,
 }
 
-export default WhithRouter(connect(mapStateToProps, mapDispatchToProps)(ShopWindow))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ShopWindow))

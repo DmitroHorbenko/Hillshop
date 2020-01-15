@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 import {removeFromCart, fetchCartData} from '../actions/cart'
 import PropTypes from 'prop-types'
@@ -8,7 +9,7 @@ import PropTypes from 'prop-types'
 class Cart extends Component {
 
     componentDidMount() {
-        this.props.fetchCartData('http://localhost:3001/api/product/', this.props.cartId)
+        this.props.fetchCartData('http://localhost:3001/api/product/', this.props.cartIds)
     }
 
     deleteButtonClick = id => {
@@ -23,9 +24,9 @@ class Cart extends Component {
             return <p>There was a problem loading ... </p>
         }
 
-        const cartDetail = this.props.cartDetail
+        const cartDetails = this.props.cartDetails
         return <div>
-            {cartDetail.map(product =>
+            {cartDetails.map(product =>
                 <div style={{ backgroundColor: 'green' }}>
                     <h3>{product.name}</h3>
                     <p>{product.description}</p>
@@ -42,8 +43,8 @@ class Cart extends Component {
 }
 
 const mapStateToProps = state => ({
-    cartId: state.cart.cartId,
-    cartDetail: state.cart.cartDetail,
+    cartIds: state.cart.cartIds,
+    cartDetails: state.cart.cartDetails,
     isLoading: state.cart.cartLoading,
     hasErrored: state.cart.cartErrored,
 })
@@ -54,8 +55,8 @@ const mapDispatchToProps = dispatch => ({
 })
 
 Cart.propTypes = {
-    cartId: PropTypes.func.isRequired,
-    cartDetail: PropTypes.array.isRequired,
+    cartIds: PropTypes.func.isRequired,
+    cartDetails: PropTypes.array.isRequired,
     cartErrored: PropTypes.bool.isRequired,
     cartLoading: PropTypes.bool.isRequired,
     removeFromCart: PropTypes.func.isRequired,

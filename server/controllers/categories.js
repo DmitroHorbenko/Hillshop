@@ -1,4 +1,4 @@
-const categoriesService = require('../services/categories')
+const categoryServices = require('../services/categories')
 
 async function getAll(req, res, next) {
     try {
@@ -21,7 +21,7 @@ async function create(req, res, next) {
 async function findById(req, res, next) {
     try {
         const category = await categoryServices.findById(req.params.id);
-        res.json(category)
+        res.json(category);
     } catch (err) {
         next(err)
     }
@@ -32,7 +32,7 @@ async function deleteById(req, res, next) {
         const category = await categoryServices.findById(req.params.id).remove().exec();
         res.json(category[req.params.id])
     } catch (err) {
-            next(err)
+        next(err)
     }
 }
 
@@ -45,10 +45,10 @@ async function update(req, res, next) {
     }
 }
 
-module.export = {
+module.exports = {
     getAll,
     create,
     findById,
+    update,
     deleteById,
-    update
 }
