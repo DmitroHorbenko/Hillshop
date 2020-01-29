@@ -6,6 +6,13 @@ import { Link } from 'react-router-dom'
 import { fetchCategories } from '../actions/categorySelector'
 import PropTypes from 'prop-types'
 
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import Paper from '@material-ui/core/Paper'
+import CircularProgress from '@material-ui/core/CircularProgress'
+
+
 class CategorySelector extends Component {
 
     componentDidMount() {
@@ -14,20 +21,24 @@ class CategorySelector extends Component {
 
     render() {
         if (this.props.isLoading) {
-            return <p>Loading</p>
+            return <CircularProgress/>
         }
         if (this.props.isErrored) {
-            return <p>There was a problem loading categories</p>
+            return <p>Problem loading categories</p>
         }
         const categories = this.props.categories
-        return <ul>
-            {categories.map(item =>
-                <Link key={item._id} to={{ pathname: "/shop", search: `?category=${item._id}` }}>
-                    <h3>{item.name}</h3>
-                    <h3>{item.id}</h3>
-                </Link>
-            )}
-        </ul>
+        console.log(categories)
+        return <Paper style={{ margin: 15 }}>
+            <List aria-label="categories selector">
+                {categories.map(item =>
+                    <Link key={item._id} to={{ pathname: "/shop", search: `?category=${item._id}` }}>
+                        <ListItem button>
+                            <ListItemText primary={item.name} />
+                        </ListItem>
+                    </Link>
+                )}
+            </List>
+        </Paper>
     }
 }
 
