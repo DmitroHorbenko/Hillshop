@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Link } from 'react-router-dom'
@@ -21,9 +21,9 @@ class CategorySelector extends Component {
 
     render() {
         if (this.props.isLoading) {
-            return <CircularProgress/>
+            return <CircularProgress color='secondary' style={{ position: 'absolute', left: '50%', top: '50%' }} />
         }
-        if (this.props.isErrored) {
+        if (this.props.hasErrored) {
             return <p>Problem loading categories</p>
         }
         const categories = this.props.categories
@@ -61,7 +61,7 @@ CategorySelector.propTypes = {
     fetchCategories: PropTypes.func.isRequired,
     categories: PropTypes.array.isRequired,
     isLoading: PropTypes.bool.isRequired,
-    isErrored: PropTypes.bool.isRequired,
+    hasErrored: PropTypes.bool.isRequired,
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CategorySelector))

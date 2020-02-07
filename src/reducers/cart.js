@@ -1,13 +1,13 @@
 import { ADD_TO_CART, REMOVE_FROM_CART, LOAD_CART_DATA, CART_LOADING, CART_ERRORED } from '../actions'
 
-const initState = {
+const initialState = {
     cartIds: [],
     cartDetails: [],
     cartLoading: false,
     cartErrored: false
 }
 
-export default function (state = initState, action) {
+export default function (state = initialState, action) {
     switch (action.type) {
         case ADD_TO_CART:
             return {

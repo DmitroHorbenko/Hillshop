@@ -5,6 +5,8 @@ import { withRouter } from 'react-router-dom'
 import { fetchProductInfo } from '../actions/productWindow'
 import PropTypes from 'prop-types'
 
+import CircularProgress from "@material-ui/core/CircularProgress";
+
 class ProductWindow extends Component {
 
     componentDidMount() {
@@ -14,7 +16,7 @@ class ProductWindow extends Component {
 
     render() {
         if (this.props.isLoading) {
-            return <p>Loading..</p>
+            return <CircularProgress color='secondary' style={{ position: 'absolute', left: '50%', top: '50%' }} />
         }
         if (this.props.hasErrored) {
             return <p> There was a problem loading product </p>

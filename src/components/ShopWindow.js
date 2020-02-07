@@ -39,7 +39,7 @@ class ShopWindow extends Component {
 
     render() {
         if (this.props.isLoading) {
-            return <CircularProgress style={{ position: 'absolute', left: '50%', top: '50%' }} />
+            return <CircularProgress color='secondary' style={{ position: 'absolute', left: '50%', top: '50%' }} />
         }
         if (this.props.hasErrored) {
             return <p> There was a problem loading categories </p>
@@ -49,31 +49,33 @@ class ShopWindow extends Component {
         return <GridList>
             { products.map(item =>
                 <Card key={item._id} style={{ maxWidth: 300, margin: 15, padding: 0, height: inherits }}>
-                    <CardActionArea>
-                        <CardMedia
-                            style={{height: 150}}
-                            // image={.png'}
-                            title={item.name}
-                        />
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                {item.name}
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                {item.description}
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                    <CardActions>
-                        <Button size="small" color="primary" onClick={() => this.addToCartButtonClick(item._id)}>
-                            Add To Cart
-                        </Button>
-                        <Link to={`/product/${item._id}`}>
-                            <Button size="small" color="primary">
-                                Learn More
+                    <Link to={`/product/${item._id}`}>
+                        <CardActionArea>
+                            <CardMedia
+                                style={{height: 150}}
+                                // image={.png'}
+                                title={item.name}
+                            />
+                            <CardContent>
+                                <Typography gutterBottom variant="h5" component="h2">
+                                    {item.name}
+                                </Typography>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    {item.description}
+                                </Typography>
+                            </CardContent>
+                        </CardActionArea>
+                        <CardActions>
+                            <Button size="small" color="secondary" onClick={() => this.addToCartButtonClick(item._id)}>
+                                Add To Cart
                             </Button>
-                        </Link>
-                    </CardActions>
+                            <Link to={`/product/${item._id}`}>
+                                <Button size="small" color="primary">
+                                    Details
+                                </Button>
+                            </Link>
+                        </CardActions>
+                    </Link>
                 </Card>
             )}
         </GridList>
@@ -82,9 +84,9 @@ class ShopWindow extends Component {
 
 const mapStateToProps = state => {
     return {
-        products: state.shopDisplay.products,
-        isLoading: state.shopDisplay.productsLoading,
-        hasErrored: state.shopDisplay.productsErrored
+        products: state.shopWindow.products,
+        isLoading: state.shopWindow.productsLoading,
+        hasErrored: state.shopWindow.productsErrored
     }
 }
 
